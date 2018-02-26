@@ -53,3 +53,10 @@ client.ajoutCommande = function (nouvelleCommande) {
 };
 client.ajoutCommande(666);
 console.log("getNbCommandes() retourne "+client.getNbCommandes());
+
+client.age = 19;
+console.log("age = "+client.age);
+client.isMajeur = function () {
+    return this.age>=18;
+};
+console.log("isMajeur() retourne "+client.isMajeur());

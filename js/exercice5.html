@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+</head>
+<body>
+    <p>Bonjour</p>
+
+    <!-- Old way -->
+    <!-- <script src="exercice5.js"></script> -->
+
+    <!-- New way -->
+    <script type="module">
+        //import * as exercice5 from "./exercice5.js";        
+        //console.log(exercice5.afficheTemplates());
+        
+        import {disBonjour} from "./exercice5.js";
+        console.log(disBonjour());
+    </script>
+
+</body>
+</html>

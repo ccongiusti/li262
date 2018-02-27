@@ -7,7 +7,7 @@ class Personne {
     }
 
     get identite() {
-        return this.nom+" "+this.prenom;
+        return this.nom + " " + this.prenom;
     }
 }
 

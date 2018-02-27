@@ -1,21 +1,21 @@
 class Personne {
-    constructor(nom, prenom, age = -1){
+    constructor(nom, prenom, age = -1) {
         this.nom = nom;
         this.prenom = prenom;
         this.age = age;
     }
-    
+
     getIdentite() {
-        return this.prenom+" "+this.nom;
+        return this.prenom + " " + this.nom;
     }
 
     get identite() {
-        return this.prenom+" "+this.nom;
+        return this.prenom + " " + this.nom;
     }
 }
 
 // contructeur avec val de param par defaut
-let moi = new Personne("CONGIUSTI", "Christophe");
+const moi = new Personne("CONGIUSTI", "Christophe");
 console.log(moi);
 
 // methode "getIdentite"
@@ -34,23 +34,24 @@ class Client extends Personne {
 
     }
 
-    ajouteCommande( commande ) {
+    ajouteCommande(commande) {
         this.commandes.push(commande);
     }
 
     get identite() {
-        return super.identite+" #"+this.numClient;
+        return super.identite + " #" + this.numClient;
     }
 
     get ca() {
         let sum = 0;
-        for (let i=0;i<this.commandes.length;i++)
-            sum+=this.commandes[i].prix;
+        for (let i = 0; i < this.commandes.length; i++) {
+            sum += this.commandes[i].prix;
+        }
         return sum;
     }
 }
 
-let c = new Client("12345", "CONGIUSTI", "Christophe", 50);
+const c = new Client("12345", "CONGIUSTI", "Christophe", 50);
 console.log(c);
 console.log(c.identite);
 

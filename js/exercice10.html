@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">        
+    <style>
+    th {
+        text-align: left;
+    }    
+    #personnes button {
+        border : 1px solid rgba(68, 68, 68, 0.5);
+        border-radius: 50%; 
+        color : rgba(68, 68, 68, 0.5);    
+        font-weight: bolder;
+        font-size: 110%;
+    }
+    #personnes tr td, #personnes tr th {
+        padding: 5px;
+    }
+    #personnes {
+        border : 1px solid black;
+        border-spacing : 0;
+        border-collapse : collapse;
+    }
+    #personnes thead tr {
+        background-color: black;
+        color:white;
+    }
+    #personnes tr:nth-child(2n) {
+        background-color: rgba(68, 68, 68, 0.2);
+    }
+    </style>
+</head>
+<body>
+    <p>
+        <table id="formulaire">
+            <tbody>
+                <tr>
+                    <th>Nom</th>
+                    <td><input type="text" name="nom" id="nom" value="DUPONT"></input></td>
+                <tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td><input type="text" name="prenom" id="prenom" value="Albert"></input></td>
+                <tr>
+                <tr>
+                    <th>Age</th>
+                    <td><input type="text" name="age" id="age" value="61"></input></td>
+                <tr>
+            </tbody>
+        </table>
+        <button id="ajouter">Ajouter</button>    
+    </p>
+    <p>
+        <table id="personnes">
+            <thead>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Age</th>
+                <th></th>
+            </thead>
+            <tbody id="tableContent"></tbody>
+        </table>
+    </p>
+    <script type="module">
+        import {Personne} from "./personne.js";
+
+        // Init
+        function init()
+        {
+            // XMLHttpRequest => Compatible "tous" navigateur
+            const xhttp = new XMLHttpRequest();
+            const url = "http://ib262/js/uniqid.php?count=4";
+            xhttp.onload = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    const ids = JSON.parse(this.responseText);
+                    if (ids.length==4)  {
+                        personnes.push(new Personne(ids[0], "CONGIUSTI", "Christophe", 45));
+                        personnes.push(new Personne(ids[1], "CONGIUSTI", "Valérie", 45));
+                        personnes.push(new Personne(ids[2], "CONGIUSTI", "Enzo", 16));
+                        personnes.push(new Personne(ids[3], "CONGIUSTI", "Mathis", 13));
+                        dessiner();
+                    }
+                } else {
+                    console.log("XMLHttpRequest return error "+ this.status + " " + this.statusText);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        }
+        init();
+
+        // Handler "Ajouter"
+        document.querySelector("#ajouter").onclick = function()
+        {
+            // XMLHttpRequest => Compatible "tous" navigateur
+            const xhttp = new XMLHttpRequest();
+            const url = "http://ib262/js/uniqid.php";
+            xhttp.onload = function(){
+                if (this.readyState == 4 && this.status == 200) {
+                    const id = JSON.parse(this.responseText);
+                    const nom = document.querySelector("#nom").value;
+                    const prenom = document.querySelector("#prenom").value;
+                    const age = document.querySelector("#age").value;            
+                    personnes.push(new Personne(id, nom, prenom, age));
+                    dessiner();
+                } else {
+                    console.log("XMLHttpRequest return error "+ this.status + " " + this.statusText);
+                }
+            };
+            xhttp.open("GET", url, true);
+            xhttp.send();
+        };
+    </script>
+    <script type="text/javascript">        
+        var personnes = [];
+
+        function dessiner()
+        {
+            const tableContent = document.querySelector("#tableContent");
+            let content  = "";
+            for (let i=0;i<personnes.length;i++) {
+                const p = personnes[i];
+                content += "<tr>";
+                content += "<td>"+p.id+"</td>";
+                content += "<td>"+p.nom+"</td>";
+                content += "<td>"+p.prenom+"</td>";
+                content += "<td>"+p.age+"</td>";
+                content += "<td><button onclick='supprimer("+i+");'>x</button></td>";
+                content += "</tr>";
+            }
+            tableContent.innerHTML = content;
+        }
+
+        function supprimer( index )
+        {   
+            console.log("remove '"+personnes[index].identite+"'");
+            personnes.splice(index, 1);
+            dessiner();
+        }
+    </script>
+</body>
+</html>

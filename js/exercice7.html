@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">        
+    <style>
+        tbody tr:nth-child(2n){
+            background-color:blue;
+        }
+        tbody tr:first-child{
+            background-color:green;
+        }
+        tbody tr:last-child{
+            background-color:red;
+        }
+        tfoot {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <th>Id</th>           
+            <th>Prénom</th>           
+            <th>NOM</th>           
+        </thead>
+        <tbody>          
+            <tr>
+                <td>1</td>           
+                <td>Christophe</td>           
+                <td>CONGIUSTI</td>           
+            </tr>
+            <tr>
+                <td>2</td>           
+                <td>Enzo</td>           
+                <td>CONGIUSTI</td>           
+            </tr>
+            <tr>
+                <td>3</td>           
+                <td>Mathis</td>           
+                <td>CONGIUSTI</td>           
+            </tr>
+            <tr>
+                <td>4</td>           
+                <td>Valérie</td>           
+                <td>CONGIUSTI</td>           
+            </tr>
+            <tr>
+                <td>5</td>           
+                <td>Bob</td>           
+                <td>CONGIUSTI</td>           
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr><th colspan="3">Fin</th></tr>
+        </tfoot>
+    </table>
+
+    <p id="p3">Cool</p>
+
+    <input type="text" name="pseudo" id="pseudo" value="totoche"></input>
+
+    <button id="clickMe">ClickMe</button>
+    
+    <script src="exercice7.js"></script>
+    <script type="text/javascript">
+        // Ancienne methode <2010
+        const x = document.getElementById("p3").innerHTML;
+        console.log(x);
+        const rouges = document.getElementsByClassName("rouge");
+        console.log(rouges);
+        const p = document.getElementsByTagName("p");
+        console.log(p);
+
+        // Nouvelle methode >=2010 (Compatible tout navigateur même IE)
+        const x2 = document.querySelector("#p3").innerHTML;
+        console.log(x2);
+        const rouges2 = document.querySelectorAll(".rouge");
+        console.log(rouges2);
+        const p2 = document.querySelectorAll("p");
+        console.log(p2);
+        const pseudo = document.querySelector("#pseudo").value;
+        console.log(pseudo);
+        document.querySelector("#clickMe").onclick = function () {
+            console.log("IClick!");
+        }
+    </script>
+</body>
+</html>

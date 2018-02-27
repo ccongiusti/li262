@@ -29,7 +29,13 @@ console.log(moi.identite);
 class Client extends Personne {
     constructor(numClient, nom, prenom, age) {
         super(nom, prenom, age);
-        this.numClient = numClient;        
+        this.numClient = numClient;
+        this.commandes = [];
+
+    }
+
+    ajouteCommande( commande ) {
+        this.commandes.push(commande);
     }
 
     get identite() {
@@ -38,28 +44,27 @@ class Client extends Personne {
 
     get ca() {
         let sum = 0;
-        if (this.commandes !=null && this.commandes != undefined)
-            for (let i=0;i<this.commandes.length;i++)
-                sum+=this.commandes[i].price;
+        for (let i=0;i<this.commandes.length;i++)
+            sum+=this.commandes[i].prix;
         return sum;
     }
 }
+
 let c = new Client("12345", "CONGIUSTI", "Christophe", 50);
 console.log(c);
 console.log(c.identite);
 
+/* Ajout des commandes */
 class Commande {
-    constructor(id, label, price) {
-        this.id = id;
-        this.label = label;
-        this.price = price;
+    constructor(identifiant, libelle, prix) {
+        this.identifiant = identifiant;
+        this.libelle = libelle;
+        this.prix = prix;
     }
 }
-
-cmd1 = new Commande(1, "crayon", 5);
-cmd2 = new Commande(2, "papier", 10);
-cmd3 = new Commande(3, "gomme", 2);
-c.commandes = [ cmd1, cmd2, cmd3 ];
+c.ajouteCommande(new Commande(1, "crayon", 5));
+c.ajouteCommande(new Commande(2, "papier", 10));
 console.log(c.ca);
-
+c.ajouteCommande(new Commande(3, "gomme", 2));
+console.log(c.ca);
 

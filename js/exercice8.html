@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">        
+    <style>
+    th {
+        text-align: left;
+    }    
+    #personnes tr td, #personnes tr th {
+        padding: 5px;
+    }
+    #personnes {
+        border : 1px solid black;
+        border-spacing : 0;
+        border-collapse : collapse;
+    }
+    #personnes thead tr {
+        background-color: black;
+        color:white;
+    }
+    #personnes tr:nth-child(2n) {
+        background-color: rgba(68, 68, 68, 0.2);
+    }
+    </style>
+</head>
+<body>
+    <p>
+        <table id="formulaire">
+            <tbody>
+                <tr>
+                    <th>Nom</th>
+                    <td><input type="text" name="nom" id="nom" value="DUPONT"></input></td>
+                <tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td><input type="text" name="prenom" id="prenom" value="Albert"></input></td>
+                <tr>
+                <tr>
+                    <th>Age</th>
+                    <td><input type="text" name="age" id="age" value="61"></input></td>
+                <tr>
+            </tbody>
+        </table>
+        <button id="ajouter">Ajouter</button>    
+    </p>
+    <p>
+        <table id="personnes">
+            <thead>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Age</th>
+                <th></th>
+            </thead>
+            <tbody id="tableContent"></tbody>
+        </table>
+    </p>
+    <script type="module">
+        import {Personne} from "./personne.js";
+
+        // Init
+        personnes.push(new Personne(1, "CONGIUSTI", "Christophe", 45));
+        personnes.push(new Personne(2, "CONGIUSTI", "Valérie", 45));
+        personnes.push(new Personne(3, "CONGIUSTI", "Enzo", 16));
+        personnes.push(new Personne(4, "CONGIUSTI", "Mathis", 13));
+        dessiner();
+
+        // Handler "Ajouter"
+        document.querySelector("#ajouter").onclick = function()
+        {
+            const id = personnes.length+1;
+            const nom = document.querySelector("#nom").value;
+            const prenom = document.querySelector("#prenom").value;
+            const age = document.querySelector("#age").value;            
+            personnes.push(new Personne(id, nom, prenom, age));
+            dessiner();
+        };        
+    </script>
+    <script type="text/javascript">        
+        var personnes = [];
+
+        function dessiner()
+        {
+            const tableContent = document.querySelector("#tableContent");
+            let content  = "";
+            for (let i=0;i<personnes.length;i++) {
+                const p = personnes[i];
+                content += "<tr>";
+                content += "<td>"+p.id+"</td>";
+                content += "<td>"+p.nom+"</td>";
+                content += "<td>"+p.prenom+"</td>";
+                content += "<td>"+p.age+"</td>";
+                content += "<td><button onclick='supprimer("+i+");'>x</button></td>";
+                content += "</tr>";
+            }
+            tableContent.innerHTML = content;
+        }
+
+        function supprimer( index )
+        {   
+            console.log("remove '"+personnes[index].identite+"'");
+            personnes.splice(index, 1);
+            dessiner();
+        }
+    </script>
+</body>
+</html>

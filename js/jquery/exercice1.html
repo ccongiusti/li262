@@ -5,13 +5,104 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <style>
+    .impaire {
+        color:blue;
+    }
+    </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
+        <p id="p1" class="impair">bonjour 1</p>
+        <p id="p2">bonjour 2</p>
+        <p id="p3" class="impair">bonjour 3</p>
+
+        <button id="btn">Cacher "bonjour 1"</button>
+
+        <div id="monDiv" style="margin:20px;width:100px;height:100px;background-color:#aaa;border-radius:50%;text-align:center;font-weight:bolder;font-size:100px;line-height:100px;user-select:none;">x</div>
+
+        <button id="btn1">Cacher "bonjour 1"</button>
+
+        <br />
+        <br />
+        <input type="text" name="prenom" id="prenom" placeholder="prenom"/>
+        <br />
+        <button id="btn_prenom">Click moi prenom</button>
+        <button id="btn_prenom_reset">Reset prenom</button>
+        <button id="btn_liste_reset">Reset liste</button>
+        <button id="btn_liste_reset_color">Reset liste color</button>
+        <br />
+        <ul id="liste_prenoms">            
+        </ul>
+
         <script type="text/javascript">
             $(document).ready(function(){
-                console.log("Ready");
-            });
+                //console.log("Ready");
+                //$("#p1").hide();
+                //$("p").hide();
+                //$(".impair").hide();
+                $("#btn").click( function(){
+                    $("#p1").hide();
+                    $("#btn").hide();
+                });
+
+                $("#btn1").click( function(){
+                    $("#p1").hide();
+                });
+
+                $("#monDiv").click(function(){
+                    if ($("#monDiv").text() == "x") {
+                        $("#monDiv").html("*");
+                        $("#monDiv").css("background-color","red");
+                    } else {
+                        $("#monDiv").html("x");
+                        $("#monDiv").css("background-color","gray");
+                    }
+                });
+
+                for (let i=1;i<=3;i++) {
+                    $("#p"+i).dblclick(function(){
+                        //$("#p"+i).hide();
+                        $(this).hide();
+                    });
+                }
+
+                $("#p1").click( function(){
+                    $(this).html("<strong>Au revoir</strong> Felix");                                        
+                });
+
+                $("#btn_prenom").click( function(){                    
+                    $("#liste_prenoms").append("<li>"+$("#prenom").val()+"</li>");
+                    //$("#liste_prenoms").prepend("<li>"+$("#prenom").val()+"</li>");
+
+                    const chld = $("#liste_prenoms").children();
+                    for (let i=0;i<chld.length;i++) {
+                        if (i%2) {
+                            chld[i].className = "impaire";
+                        }
+                    }
+                });
+
+                // Efface le prenom
+                $("#btn_prenom_reset").click( function(){
+                    $("#prenom").val("");
+                });
+
+                // Vide la liste
+                $("#btn_liste_reset").click( function(){
+                    // enleve <ul>
+                    //$("#liste_prenoms").remove(); 
+
+                    // enleve les <li>
+                    $("#liste_prenoms").empty();
+                });
+
+                $("#btn_liste_reset_color").click( function(){
+                    //$("#liste_prenoms .impaire").remove();
+                    $("#liste_prenoms li:nth-child(2n)").remove();
+                });
+
+            });            
         </script>    
 </body>
 </html>

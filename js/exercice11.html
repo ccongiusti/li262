@@ -6,13 +6,37 @@
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">        
     <style>
+        .invisible {
+            display: none;
+        }
     </style>
 </head>
 <body>
     <p id="visiteurs"></p>
+    <p id="welcome" class="invisible"></p>
+    <div id="form_login">
+        <table id="formulaire">
+            <tbody>
+                <tr>
+                    <th>Prénom</th>
+                    <td><input type="text" name="prenom" id="prenom" value=""></input></td>
+                <tr>
+                <tr>
+                        <th>Nom</th>
+                        <td><input type="text" name="nom" id="nom" value=""></input></td>
+                <tr>
+            </tbody>
+        </table>
+        <button id="btn">LOGIN</button>
+    </div>
     <script type="text/javascript">
-        // fonctionnement du localStorage
+        //
+        // TP - Fonctionnement du localStorage
+        //
         if ( typeof(localStorage) !== null ) {
+            //
+            // Nb. visiteurs
+            //
             if (localStorage["visiteurs"] == null) {
                 localStorage["visiteurs"]=0;
                 document.querySelector("#visiteurs").innerHTML = "non initialisé";
@@ -20,6 +44,27 @@
                 localStorage["visiteurs"]++;
                 document.querySelector("#visiteurs").innerHTML = localStorage["visiteurs"];
             }
+
+            //
+            // Utilisateur courant
+            //
+            function refresh(user) {
+                document.querySelector("#form_login").className = "invisible";
+                document.querySelector("#welcome").className = "";                
+                document.querySelector("#welcome").innerHTML = "Bienvenu " + user.prenom + " " + user.nom;
+            }
+
+            if (localStorage["utilisateur"] != null) {
+                refresh(JSON.parse(localStorage["utilisateur"]));                    
+            } else {
+                document.querySelector("#btn").onclick = function () {
+                    let user = {}
+                    user.nom = document.querySelector("#nom").value;
+                    user.prenom = document.querySelector("#prenom").value;
+                    localStorage["utilisateur"] = JSON.stringify(user);
+                    refresh(user);
+                };
+            }            
         }
     </script>
 </body>

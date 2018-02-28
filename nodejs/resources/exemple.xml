@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>  
+<utilisateurs>
+    <utilisateur id="1" type="pere">
+        <prenom>Christophe</prenom>
+        <nom>CONGIUSTI</nom>
+        <age>45</age>
+    </utilisateur>
+    <utilisateur id="2" type="mere">
+        <prenom>Valérie</prenom>
+        <nom>CONGIUSTI</nom>
+        <age>45</age>
+    </utilisateur>
+    <utilisateur id="3"  type="fils">
+        <prenom>Enzo</prenom>
+        <nom>CONGIUSTI</nom>
+        <age>16</age>
+    </utilisateur>
+    <utilisateur id="4" type="fils">
+        <prenom>Mathis</prenom>
+        <nom>CONGIUSTI</nom>
+        <age>13</age>
+    </utilisateur>
+</utilisateurs>

@@ -10,10 +10,11 @@ http.createServer(function (requete, reponse) {
         if (err) {
             reponse.write("Impossible de charger les utilisateurs");
         } else {
-            for (let i = 0; i<users.length; i++) {
+            for (let i = 0; i < users.length; i++) {
                 reponse.write(users[i].id + " " + users[i].prenom + " " + users[i].nom + "<br />");
             }
         }
         reponse.end();
     });
 }).listen(3000);
+

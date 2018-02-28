@@ -18,11 +18,12 @@
 <body>
         <div id="bloc1" style="width:200px;height:100px;background-color:red">Bloc 1</div>
         <div id="bloc2" class="cacher" style="width:200px;height:100px;background-color:lightgray">Bloc 2</div>
-
+        
         <br />
 
         <button id="bloc1btn">Bloc 1</button>
         <button id="bloc2btn">Bloc 2</button>
+        <button id="vertbtn">Vert</button>
 
         <script type="text/javascript">
             $(document).ready(function(){
@@ -37,10 +38,23 @@
                     }
                     */
                     // En une ligne :) !
-                    $("#bloc1").toggleClass("cacher");
+                    //$("#bloc1").toggleClass("cacher");
+                    // Progressif
+                    $("#bloc1").toggle(1000);
                 });
                 $("#bloc2btn").click(function(){
                     $("#bloc2").removeClass("cacher");
+                });
+                $("#vertbtn").click(function(){
+                    $("#bloc1").css(
+                        {
+                            "background-color" : "green",
+                            "color" : "red",
+                            "width" : "300px",
+                            "border" : "2px solid yellow",
+                            "border-radius" : "20px"
+                        }
+                    );
                 });
             });            
         </script>    

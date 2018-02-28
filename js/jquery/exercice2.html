@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <style>
+        .cacher {
+            display: none;
+        }
+        .montrer {
+            display: block;
+        }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+        <div id="bloc1" style="width:200px;height:100px;background-color:red">Bloc 1</div>
+        <div id="bloc2" class="cacher" style="width:200px;height:100px;background-color:lightgray">Bloc 2</div>
+
+        <br />
+
+        <button id="bloc1btn">Bloc 1</button>
+        <button id="bloc2btn">Bloc 2</button>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("#bloc1btn").click(function(){
+                    /*
+                    if ($("#bloc1").hasClass("cacher")){
+                        $("#bloc1").removeClass("cacher");
+                        $("#bloc1").addClass("montrer");
+                    } else {
+                        $("#bloc1").addClass("cacher");
+                        $("#bloc1").removeClass("montrer");
+                    }
+                    */
+                    // En une ligne :) !
+                    $("#bloc1").toggleClass("cacher");
+                });
+                $("#bloc2btn").click(function(){
+                    $("#bloc2").removeClass("cacher");
+                });
+            });            
+        </script>    
+</body>
+</html>

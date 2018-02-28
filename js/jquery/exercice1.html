@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <style>
     .impaire {
-        color:blue;
+        color:red;
     }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -19,7 +19,7 @@
 
         <button id="btn">Cacher "bonjour 1"</button>
 
-        <div id="monDiv" style="margin:20px;width:100px;height:100px;background-color:#aaa;border-radius:50%;text-align:center;font-weight:bolder;font-size:100px;line-height:100px;user-select:none;">x</div>
+        <div id="monDiv" style="margin:20px;width:100px;height:100px;background-color:rgb(128, 128, 128);border-radius:50%;text-align:center;font-weight:bolder;font-size:100px;line-height:100px;user-select:none;">X</div>
 
         <button id="btn1">Cacher "bonjour 1"</button>
 
@@ -30,7 +30,7 @@
         <button id="btn_prenom">Click moi prenom</button>
         <button id="btn_prenom_reset">Reset prenom</button>
         <button id="btn_liste_reset">Reset liste</button>
-        <button id="btn_liste_reset_color">Reset liste color</button>
+        <button id="btn_liste_reset_color">Reset liste <font color="red"><b>color</b></font></button>
         <br />
         <ul id="liste_prenoms">            
         </ul>
@@ -51,12 +51,10 @@
                 });
 
                 $("#monDiv").click(function(){
-                    if ($("#monDiv").text() == "x") {
-                        $("#monDiv").html("*");
-                        $("#monDiv").css("background-color","red");
+                    if ($("#monDiv").css("background-color") == "rgb(128, 128, 128)") {
+                        $("#monDiv").css("background-color","rgb(255, 64, 64)");
                     } else {
-                        $("#monDiv").html("x");
-                        $("#monDiv").css("background-color","gray");
+                        $("#monDiv").css("background-color","rgb(128, 128, 128)");
                     }
                 });
 

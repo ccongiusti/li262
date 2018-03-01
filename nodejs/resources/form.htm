@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        th {
+            text-align: left;
+        }
+        table {
+            padding: 5px;
+            border-radius: 10px;
+            background-color: rgba(211, 211, 211, 0.4);
+        }
+        td {
+            padding: 5px;
+            text-align: right;
+        }
+        form input {
+            padding: 2px;
+        }
+    </style>
+</head>
+<body>
+<form method="get" action="/register">
+    <table>
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td><input type="text" name="nom" id="nom" value="CONGIUSTI"></input></td>
+            <tr>
+            <tr>
+                <th>Prénom</th>
+                <td><input type="text" name="prenom" id="prenom" value="Christophe"></input></td>
+            <tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Enregistrer" />
+                </td>                    
+            </tr>            
+        </tfoot>
+    </table>
+</form>
+</body>
+</html>
